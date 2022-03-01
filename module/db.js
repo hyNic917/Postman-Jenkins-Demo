@@ -2,7 +2,7 @@ const newman = require('newman');
 module.exports.init = function () {
   console.log('hi');
   newman.run({
-    collection: require('./sample-collection.json'),
+    collection: require('../Petstore.postman_collection.json'),
     reporters: 'cli'
 }, function (err) {
 	if (err) { throw err; }
