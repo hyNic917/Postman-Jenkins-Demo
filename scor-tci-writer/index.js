@@ -11,6 +11,15 @@ module.exports.runNewman = function () {
 })
 .on('beforeRequest', function (err, o) {
     console.log(o.item.name);	
+})
+.on('assertion', (err, e) => {
+    //const { assertion } = e
+    console.log(e.assertion)
+    const key = err ? 'failed' : e.skipped ? 'skipped' : 'executed'
+    console.log(e);
+
+    // log[key] = log[key] || []
+    // log[key].push(assertion)
 });
 // .on("beforeDone", function() {
 //     var report = _.get(newman, "summary.run.executions"),
