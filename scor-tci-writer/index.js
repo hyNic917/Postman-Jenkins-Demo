@@ -1,7 +1,6 @@
 const newman = require('newman');
-const htmlextra = require('newman-reporter-htmlextra');
 
-module.exports.init = function () {
+module.exports.runNewman = function () {
   console.log('hi');
   newman.run({
     collection: require('../Petstore.postman_collection.json'),

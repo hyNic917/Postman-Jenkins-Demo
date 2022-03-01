@@ -1,0 +1,30 @@
+{
+  "name": "scor-tci-writer",
+  "version": "1.0.0",
+  "description": "Packages that helps with writing postman results to a database",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyNic917/Postman-Jenkins-Demo.git"
+  },
+  "keywords": [
+    "newman",
+    "scor",
+    "jenkins",
+    "postman",
+    "database"
+  ],
+  "author": "Hylaine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hyNic917/Postman-Jenkins-Demo/issues"
+  },
+  "homepage": "https://github.com/hyNic917/Postman-Jenkins-Demo#readme",
+  "dependencies": {
+    "newman": "^5.3.1",
+    "newman-reporter-htmlextra": "^1.22.7"
+  }
+}
