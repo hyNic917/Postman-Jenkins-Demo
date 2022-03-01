@@ -10,6 +10,12 @@ namespace dbConsole
     {
         static void Main(string[] args)
         {
+            int i = 0;
+            foreach(var arg in args)
+            {
+                Console.WriteLine($"Arg[{i}]: {arg}");
+                i++;
+            }
             var services = ConfigureServices();
 
             var serviceProvider = services.BuildServiceProvider();
