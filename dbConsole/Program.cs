@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Text;
 
 namespace dbConsole
 {
@@ -10,25 +11,20 @@ namespace dbConsole
     {
         static void Main(string[] args)
         {
-            int i = 0;
-            foreach(var arg in args)
-            {
-                Console.WriteLine($"Arg[{i}]: {arg}");
-                i++;
-            }
-            var services = ConfigureServices();
+            var services = ConfigureServices(args[0], args[1]);
 
             var serviceProvider = services.BuildServiceProvider();
 
-            serviceProvider.GetService<App>().Run();
+            serviceProvider.GetService<App>().Run(args[0], args[1]);
         }
 
-        private static IServiceCollection ConfigureServices()
+        private static IServiceCollection ConfigureServices(string username, string password)
         {
             IServiceCollection services = new ServiceCollection();
 
-            var config = LoadConfiguration();
+            var config = LoadConfiguration(username, password);
             services.AddSingleton(config);
+
             services.AddScoped<IDatabaseConfiguration, DatabaseConfiguration>();
             // required to run the application
             services.AddTransient<App>();
@@ -37,14 +33,16 @@ namespace dbConsole
             return services;
         }
 
-        public static IConfiguration LoadConfiguration()
+        public static IConfiguration LoadConfiguration(string username, string password)
         {
+            string json = $"{{\"DatabaseSettings\": {{\"Username\": \"{username}\",\"Password\":  \"{password}\"}}}}";
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environmentName ?? "Production"}.json", optional: false, reloadOnChange: true)
+                .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(json)))
                 .AddUserSecrets<App>();
 
             return builder.Build();

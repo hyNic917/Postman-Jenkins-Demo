@@ -20,7 +20,7 @@ namespace dbConsole
             this.database = new Database(config);
         }
 
-        public void Run()
+        public void Run(string username, string password)
         {
             Console.WriteLine("Hello from App.cs");
             try
