@@ -8,8 +8,8 @@ module.exports.init = function () {
 	if (err) { throw err; }
     console.log('collection run complete!');
 })
-.on('beforeRequest', function (err, args) {
-    console.log(args.request.name);
+.on('beforeRequest', function (err, o) {
+    console.log(o.item.name);
 	
 });
 };
