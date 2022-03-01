@@ -3,7 +3,7 @@ module.exports.init = function () {
   console.log('hi');
   newman.run({
     collection: require('../Petstore.postman_collection.json'),
-    reporters: 'cli'
+    reporters: 'cli,htmlextra'
 }, function (err) {
 	if (err) { throw err; }
     console.log('collection run complete!');
