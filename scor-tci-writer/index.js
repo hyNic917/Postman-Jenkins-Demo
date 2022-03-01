@@ -10,7 +10,14 @@ module.exports.runNewman = function () {
     console.log('collection run complete!');
 })
 .on('beforeRequest', function (err, o) {
-    console.log(o.item.name);
-	
+    console.log(o.item.name);	
+})
+.on("beforeDone", function() {
+    var report = _.get(newman, "summary.run.executions"),
+        collection = _.get(newman, "summary.collection"),
+        cache,
+        collName;
+
+    console.log(report);
 });
 };
