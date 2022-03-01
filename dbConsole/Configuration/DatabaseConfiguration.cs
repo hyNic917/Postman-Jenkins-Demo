@@ -16,6 +16,7 @@ namespace dbConsole.Configuration
             this.Database = section.GetValue<string>("Database");
             this.Username = section.GetValue<string>("Username");
             this.Password = section.GetValue<string>("Password");
+            Console.WriteLine($"Setup db configuration. Server: {this.Server}, Database: {this.Database}, User: {this.Username}");
         }
         public string Server { get; }
 

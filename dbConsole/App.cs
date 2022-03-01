@@ -23,7 +23,15 @@ namespace dbConsole
         public void Run()
         {
             Console.WriteLine("Hello from App.cs");
-            int i = this.database.CreateBatch("Test 1");
+            try
+            {
+                int i = this.database.CreateBatch("Test 1");
+                Console.WriteLine($"Working with batch {i}");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             //foreach(NewmanResult result in ReadFile())
             //{
