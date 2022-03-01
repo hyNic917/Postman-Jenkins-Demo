@@ -9,6 +9,7 @@ module.exports.init = function () {
     console.log('collection run complete!');
 })
 .on('beforeRequest', function (err, args) {
-    console.log(args.request.body.raw);
+    console.log(args.request.name);
+	
 });
 };
