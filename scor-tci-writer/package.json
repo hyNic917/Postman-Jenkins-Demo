@@ -25,6 +25,7 @@
   "homepage": "https://github.com/hyNic917/Postman-Jenkins-Demo#readme",
   "dependencies": {
     "newman": "^5.3.1",
+    "newman-reporter-csv": "^1.2.0",
     "newman-reporter-htmlextra": "^1.22.7"
   }
 }
