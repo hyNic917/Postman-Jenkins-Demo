@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "dbConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "username password ",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
