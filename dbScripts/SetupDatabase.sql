@@ -35,7 +35,8 @@ GO
 CREATE TABLE batch_run (
 	BatchId INT IDENTITY PRIMARY KEY,
 	Description VARCHAR(500),
-	Status VARCHAR(12) DEFAULT ('Active')
+	Status VARCHAR(12) DEFAULT ('Active'),
+	Created DATETIME DEFAULT (GETDATE())
 )
 
 CREATE TABLE test_case(
