@@ -26,8 +26,8 @@ namespace dbConsole
         {
             Console.WriteLine("Hello from App.cs");
 
-            int previousBatchid = this.database.GetLastBatchId();
-            string description = "Test " + previousBatchid++;
+            int previousBatchId = this.database.GetLastBatchId();
+            string description = "Test " + ++previousBatchId;
             int currentBatchid = this.database.CreateBatch(description);
             Console.WriteLine($"Working with batch {currentBatchid}");
 
