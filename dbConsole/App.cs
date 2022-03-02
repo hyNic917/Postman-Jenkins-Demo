@@ -53,7 +53,7 @@ namespace dbConsole
         {
             DirectoryInfo binDirectory = System.IO.Directory.GetParent(Environment.CurrentDirectory);
             DirectoryInfo reportDirectory = new DirectoryInfo(Path.Combine(binDirectory.Parent.Parent.Parent.Parent.ToString(), "scor-tci-writer", "newman"));
-            var file = reportDirectory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+            var file = reportDirectory.GetFiles().Where(f => f.Name.EndsWith(".csv")).OrderByDescending(f => f.LastWriteTime).First();
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
