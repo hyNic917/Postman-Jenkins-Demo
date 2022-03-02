@@ -528,3 +528,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /scor-tci-writer/newman
+/newman-reporter-scor/newman

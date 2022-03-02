@@ -754,7 +754,14 @@
 							],
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "mySpecialHeader",
+										"value": "foo",
+										"description": "bar",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/user/:username",
 									"host": [
@@ -764,6 +771,14 @@
 										"user",
 										":username"
 									],
+									"query": [
+										{
+											"key": "myFakeParam",
+											"value": "foo",
+											"description": "qadl5v",
+											"disabled": true
+										}
+									],
 									"variable": [
 										{
 											"key": "username",
@@ -772,7 +787,7 @@
 										}
 									]
 								},
-								"description": "This can only be done by the logged in user."
+								"description": "Deletes a user from the pet store.\n\nThis can only be done by the logged in user."
 							},
 							"response": []
 						}
