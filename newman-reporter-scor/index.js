@@ -46,9 +46,9 @@ module.exports = function newmanCSVReporter (newman, options) {
     if (err || !e.item.name) return
     const { cursor, item, request } = e
 
-    console.log("here's the dets");
-    console.log(e);
-    console.log(item.request.headers);
+    // console.log("here's the dets");
+    // console.log(e);
+    // console.log(item.request.headers);
 
     Object.assign(log, {
       collectionName: newman.summary.collection.name,
