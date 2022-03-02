@@ -33,13 +33,13 @@ GO
 
 
 CREATE TABLE batch_run (
-	BatchId INT PRIMARY KEY,
+	BatchId INT IDENTITY PRIMARY KEY,
 	Description VARCHAR(500),
 	Status VARCHAR(12) DEFAULT ('Active')
 )
 
 CREATE TABLE test_case(
-	TestCaseId INT PRIMARY KEY,
+	TestCaseId INT IDENTITY PRIMARY KEY,
 	Name VARCHAR(250),
 	Description VARCHAR(MAX),
 	AppExternalId VARCHAR(255),
@@ -52,7 +52,7 @@ ADD CONSTRAINT FK_test_case_BatchId FOREIGN KEY (BatchId) REFERENCES batch_run(B
 GO
 
 CREATE TABLE test_case_item (
-	ItemId INT PRIMARY KEY,
+	ItemId INT IDENTITY PRIMARY KEY,
 	TestCaseId INT NOT NULL,
 	Result CHAR(1)
 )
