@@ -51,7 +51,7 @@ namespace dbConsole.Data
             var sql = "SELECT TOP 1 batchId FROM batch_run ORDER BY batchId DESC";
             using var cmd = new SqlCommand(sql, connection);
             var id = cmd.ExecuteScalar();
-            return (Int32)id;
+            return id == null ? -1 : (Int32)id;
         }
 
         public int CreateTestCase(int batchId, TestCase testCase)
