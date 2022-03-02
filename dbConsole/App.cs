@@ -1,6 +1,8 @@
 ﻿using CsvHelper;
+using CsvHelper.Configuration;
 using dbConsole.Configuration;
 using dbConsole.Data;
+using dbConsole.POCOs;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -20,23 +22,27 @@ namespace dbConsole
             this.database = new Database(config);
         }
 
-        public void Run(string username, string password)
+        public void Run()
         {
             Console.WriteLine("Hello from App.cs");
-            try
-            {
-                int i = this.database.CreateBatch("Test 1");
-                Console.WriteLine($"Working with batch {i}");
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
 
-            //foreach(NewmanResult result in ReadFile())
-            //{
+            int previousBatchid = this.database.GetLastBatchId();
+            string description = "Test " + previousBatchid++;
+            int currentBatchid = this.database.CreateBatch(description);
+            Console.WriteLine($"Working with batch {currentBatchid}");
 
-            //}
+            int count = 0;
+            foreach(NewmanResult result in LoadResults())
+            {
+                count++;
+                Console.WriteLine($"Started processing result {count}");
+
+                TestCase testCase = new TestCase(result);
+                int testCaseId = this.database.CreateTestCase(currentBatchid,testCase);
+                this.database.CreateTestCaseItem(testCaseId, testCase.DidTestPass);
+
+                Console.WriteLine($"Finished processing result {count}");
+            }
         }
 
         /// <summary>
@@ -49,9 +55,13 @@ namespace dbConsole
             DirectoryInfo reportDirectory = new DirectoryInfo(Path.Combine(binDirectory.Parent.Parent.Parent.ToString(), "scor-tci-writer", "newman"));
             var file = reportDirectory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
 
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                MissingFieldFound = null,
+            };
             using var reader = new StreamReader(file.FullName);
-            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            return csv.GetRecords<NewmanResult>();
+            using var csv = new CsvReader(reader, config);
+            return csv.GetRecords<NewmanResult>().ToList();
         }
     }
 }

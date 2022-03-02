@@ -14,8 +14,14 @@ namespace dbConsole
             var services = ConfigureServices(args[0], args[1]);
 
             var serviceProvider = services.BuildServiceProvider();
-
-            serviceProvider.GetService<App>().Run(args[0], args[1]);
+            try
+            {
+                serviceProvider.GetService<App>().Run();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private static IServiceCollection ConfigureServices(string username, string password)
