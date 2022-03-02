@@ -381,21 +381,14 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/store/order/:orderId",
+											"raw": "{{baseUrl}}/store/order/5",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"store",
 												"order",
-												":orderId"
-											],
-											"variable": [
-												{
-													"key": "orderId",
-													"value": "3",
-													"description": "(Required) ID of pet that needs to be fetched"
-												}
+												"5"
 											]
 										},
 										"description": "QACL_27115_008 |\n\nPet Store API - Order Controller - Find order by Id: Verify that when an order is searched by Id the order is found.\n\nINPUT:\n\nOrder Id: 9223372000001086119\n\nOUTPUT:\n\nOrder Id: 9223372000001086119"
