@@ -17,6 +17,9 @@ namespace dbConsole.POCOs
         [Name("requestName")]
         public string RequestName { get; set; }
 
+        [Name("requestDescription")]
+        public string RequestDescription { get; set; }
+
         [Name("method")]
         public string Method { get; set; }
 

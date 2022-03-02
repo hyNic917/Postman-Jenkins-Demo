@@ -52,7 +52,10 @@ namespace dbConsole
         private static IEnumerable<NewmanResult> LoadResults()
         {
             DirectoryInfo binDirectory = System.IO.Directory.GetParent(Environment.CurrentDirectory);
-            DirectoryInfo reportDirectory = new DirectoryInfo(Path.Combine(binDirectory.Parent.Parent.Parent.Parent.ToString(), "newman"));
+            // Deploy Linux
+            //DirectoryInfo reportDirectory = new DirectoryInfo(Path.Combine(binDirectory.Parent.Parent.Parent.Parent.ToString(), "newman"));
+            //Debug Locally
+            DirectoryInfo reportDirectory = new DirectoryInfo(Path.Combine(binDirectory.Parent.Parent.Parent.ToString(), "newman"));
             var file = reportDirectory.GetFiles().Where(f => f.Name.EndsWith(".csv")).OrderByDescending(f => f.LastWriteTime).First();
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)

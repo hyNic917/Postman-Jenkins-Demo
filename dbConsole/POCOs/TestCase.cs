@@ -19,8 +19,9 @@ namespace dbConsole.POCOs
         public TestCase(NewmanResult newmanResult)
         {
             this.Name = newmanResult.RequestName;
-            this.Description = newmanResult.Url;
-            this.AppExternalId = Guid.NewGuid().ToString();
+            string[] parts = newmanResult.RequestDescription.Split('|', StringSplitOptions.RemoveEmptyEntries);
+            this.Description = parts[1].Trim();
+            this.AppExternalId = parts[0].Trim();
             this.Status = newmanResult.GetTestCaseStatus();
             this.DidTestPass = newmanResult.DidTestPass();
         }
